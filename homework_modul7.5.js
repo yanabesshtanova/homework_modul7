@@ -1,24 +1,37 @@
-function Applicate(devicePower, deviceColor, status) {
-	this.power = devicePower;
-	this.color = deviceColor;
-	this.a = function (a) {
-		this.status = a;
-	};
+class Device {
+	constructor(devicePower, deviceStatus) {
+		this.power = devicePower;
+		this.a = function (a) {
+			this.status = a;
+		};
+	}
+}
+class Lamp extends Device {
+	constructor(devicePower, deviceColor, deviceStatus) {
+		super(devicePower, deviceStatus);
+		this.color = deviceColor;
+	}
+}
+class Microwave extends Device {
+	constructor(devicePower, deviceColor, deviceStatus) {
+		super(devicePower, deviceStatus);
+		this.color = deviceColor;
+	}
 }
 
-const lamp = new Applicate(150, "white", 0);
-const microwave = new Applicate(900, "black", 0);
+const lamp1 = new Lamp(150, 'black', 0);
+const microwave1 = new Microwave(900, 'white', 0);
 
-let lampStatus = prompt("Включить лампу - 1, Оставить выключенной - 0");
-let microwaveStatus = prompt("Включить микроволновку - 1, Оставить выключенной - 0");
+let lampStatus = +prompt("Включить лампу - 1, Оставить выключенной - 0");
+let microwaveStatus = +prompt("Включить микроволновку - 1, Оставить выключенной - 0");
 
-lamp.a(+lampStatus);
-microwave.a(+microwaveStatus);
+lamp1.a(lampStatus);
+microwave1.a(microwaveStatus);
 
-console.log(lamp);
-console.log(microwave);
+console.log(microwave1);
+console.log(lamp1);
 
-function getSumDevicesPower(x, y) {
+function sumPower(x, y) {
 	let a = x.power;
 	let b = y.power;
 	if (x.status == 0) {
@@ -27,6 +40,6 @@ function getSumDevicesPower(x, y) {
 	if (y.status == 0) {
 		b = 0;
 	}
-	console.log("Общая потребяемая энергия - " + (a + b));
+	return a + b;
 }
-getSumDevicesPower(lamp, microwave);
+console.log("Общая потребяемая энергия: " + sumPower(lamp1, microwave1));

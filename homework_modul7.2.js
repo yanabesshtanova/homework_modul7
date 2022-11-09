@@ -1,11 +1,9 @@
 let example = {
 	name: 'yana',
 	age: 31,
+	key: 3,
 }
 function myFunction(str, Object ) {
-	if (Object.key(example).includes(str)) {
-		return true
-	} else {
-		return false
-	}
+	console.log(str in Object)
 }
+myFunction("key", example)
